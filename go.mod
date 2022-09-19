@@ -12,7 +12,9 @@ require (
 	github.com/mohong122/ip2region v0.0.0-20190505055455-f4ef24f6b03d
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/sirupsen/logrus v1.8.1
+	github.com/zeromicro/go-zero v1.4.1
 	go.uber.org/zap v1.21.0
+	google.golang.org/grpc v1.49.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v2 v2.4.0
 )
