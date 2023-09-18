@@ -9,12 +9,26 @@ func NowUnix() int64 {
 	return time.Now().Unix()
 }
 
-//今天的日期
+// 今天的日期
 func TodayDate() string {
 	return time.Now().Format("20060102")
 }
 
-//今日0点时间戳
+// 今日0点时间戳
+func TodayTime() time.Time {
+	today := time.Now().Format("2006-01-02")
+	to, _ := time.ParseInLocation("2006-01-02", today, time.Local)
+	return to
+}
+
+// 零点时间戳
+func DayTime(day int) time.Time {
+	today := time.Now().Format("2006-01-02")
+	to, _ := time.ParseInLocation("2006-01-02", today, time.Local)
+	return to.AddDate(0, 0, day)
+}
+
+// 今日0点时间戳
 func TodayUnix() int64 {
 	today := time.Now().Format("2006-01-02")
 	to, _ := time.ParseInLocation("2006-01-02", today, time.Local)
@@ -86,7 +100,7 @@ func BirthdayToYear(date string) int {
 	return birthday.Year()
 }
 
-//通过生日获取出生时代，80后、90后
+// 通过生日获取出生时代，80后、90后
 func BirthDayToRange(date string) int64 {
 	year := BirthdayToYear(date)
 	var yearRange int64
@@ -99,18 +113,18 @@ func BirthDayToRange(date string) int64 {
 	return yearRange * 10
 }
 
-//获取传入的时间所在月份的第一天，即某月第一天的0点。如传入time.Now(), 返回当前月份的第一天0点时间。
+// 获取传入的时间所在月份的第一天，即某月第一天的0点。如传入time.Now(), 返回当前月份的第一天0点时间。
 func GetFirstDateOfMonth(t time.Time) time.Time {
 	t = t.AddDate(0, 0, -t.Day()+1)
 	return GetZeroTime(t)
 }
 
-//获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.Now(), 返回当前月份的最后一天0点时间。
+// 获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.Now(), 返回当前月份的最后一天0点时间。
 func GetLastDateOfMonth(t time.Time) time.Time {
 	return GetFirstDateOfMonth(t).AddDate(0, 1, 0)
 }
 
-//获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.Now(), 返回当前月份的最后一天0点时间。
+// 获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.Now(), 返回当前月份的最后一天0点时间。
 func GetFirstDateOfThisMonth() int64 {
 	t := time.Now()
 	ti := GetFirstDateOfMonth(t).AddDate(0, 0, 0)
@@ -119,18 +133,18 @@ func GetFirstDateOfThisMonth() int64 {
 	return p.Unix()
 }
 
-//获取某一天的0点时间
+// 获取某一天的0点时间
 func GetZeroTime(t time.Time) time.Time {
 	return time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
 }
 
-//获取某一天的0点时间
+// 获取某一天的0点时间
 func GetZeroDateTimeByTime(t int64) time.Time {
 	time := time.Unix(t, 0)
 	return GetZeroTime(time)
 }
 
-//根据传入的天数，获取当天0点时间戳
+// 根据传入的天数，获取当天0点时间戳
 func GetDateByDay(dayNum int) int64 {
 	t := time.Now()
 	ti := GetZeroTime(t).AddDate(0, 0, dayNum)
@@ -139,7 +153,7 @@ func GetDateByDay(dayNum int) int64 {
 	return p.Unix()
 }
 
-//根据传入的天数，获取当天0点时间戳
+// 根据传入的天数，获取当天0点时间戳
 func GetDateStringByDay(dayNum int) string {
 	t := time.Now()
 	ti := GetZeroTime(t).AddDate(0, 0, dayNum)
@@ -148,14 +162,15 @@ func GetDateStringByDay(dayNum int) string {
 	return p.Format("20060102")
 }
 
-//获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.Now(), 返回当前月份的最后一天0点时间。
+// 获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.Now(), 返回当前月份的最后一天0点时间。
 func GetTimeDate() string {
 	t := time.Now()
 	fti := t.Format("2006-01-02 15:04:05")
 	return fti
 }
 
-/**
+/*
+*
 获取本周周一的日期
 */
 func GetFirstDateOfWeek() int64 {
@@ -172,7 +187,8 @@ func GetFirstDateOfWeek() int64 {
 	return p.Unix()
 }
 
-/**
+/*
+*
 获取本周周一的日期
 */
 func GetMondayDate() string {
@@ -187,7 +203,7 @@ func GetMondayDate() string {
 	return weekMonday
 }
 
-//获取过去几天的日期
+// 获取过去几天的日期
 func GetNumFmtDate(f string, days int) []string {
 	if f == "" {
 		f = "20060102"
