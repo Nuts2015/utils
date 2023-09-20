@@ -4,6 +4,7 @@ import (
 	"archive/zip"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 )
@@ -131,4 +132,16 @@ func UnzipFolder(source, target string) error {
 
 	fmt.Println("解压完成:", source)
 	return nil
+}
+
+func FilterDir(path, name string) ([]string, error) {
+	var files []string
+	fileInfo, err := ioutil.ReadDir(path)
+	if err != nil {
+		return files, err
+	}
+	for _, file := range fileInfo {
+		files = append(files, file.Name())
+	}
+	return files, nil
 }
