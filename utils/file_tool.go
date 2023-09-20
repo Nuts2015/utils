@@ -83,3 +83,52 @@ func ZipFolder(source, target string) error {
 	fmt.Println("压缩完成:", target)
 	return nil
 }
+
+func UnzipFolder(source, target string) error {
+	// 打开要解压的压缩文件
+	zipFile, err := zip.OpenReader(source)
+	if err != nil {
+		return err
+	}
+	defer zipFile.Close()
+
+	// 遍历压缩文件中的所有文件和文件夹
+	for _, file := range zipFile.File {
+		// 获取解压后的文件路径
+		filePath := filepath.Join(target, file.Name)
+
+		// 如果当前项为文件夹，则创建对应的文件夹
+		if file.FileInfo().IsDir() {
+			os.MkdirAll(filePath, os.ModePerm)
+			continue
+		}
+
+		// 创建解压后的文件
+		err = os.MkdirAll(filepath.Dir(filePath), os.ModePerm)
+		if err != nil {
+			return err
+		}
+
+		outputFile, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, file.Mode())
+		if err != nil {
+			return err
+		}
+		defer outputFile.Close()
+
+		// 打开压缩文件中的文件
+		rc, err := file.Open()
+		if err != nil {
+			return err
+		}
+		defer rc.Close()
+
+		// 将压缩文件中的内容复制到解压后的文件中
+		_, err = io.Copy(outputFile, rc)
+		if err != nil {
+			return err
+		}
+	}
+
+	fmt.Println("解压完成:", source)
+	return nil
+}
