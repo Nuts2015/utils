@@ -6,6 +6,7 @@ package utils
 
 import (
 	"encoding/json"
+	"reflect"
 )
 
 type JsonUtils struct {
@@ -32,7 +33,7 @@ func (JsonUtils) JsonDecodeBytes(b []byte, v interface{}) error {
 	return json.Unmarshal(b, v)
 }
 
-//json解码成map
+// json解码成map
 func (JsonUtils) JsonToMap(jsonStr string) (map[string]interface{}, error) {
 	m := make(map[string]interface{})
 	err := json.Unmarshal([]byte(jsonStr), &m)
@@ -51,4 +52,20 @@ func MapToJson(m map[string]interface{}) (string, error) {
 	}
 
 	return string(jsonByte), nil
+}
+
+func StructToJsonTagMap(obj interface{}) map[string]interface{} {
+	objValue := reflect.ValueOf(obj)
+	objType := objValue.Type()
+
+	data := make(map[string]interface{})
+
+	for i := 0; i < objValue.NumField(); i++ {
+		field := objValue.Field(i)
+		key := objType.Field(i).Tag.Get("json")
+		value := field.Interface()
+		data[key] = value
+	}
+
+	return data
 }
