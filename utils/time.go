@@ -14,6 +14,12 @@ func TodayDate() string {
 	return time.Now().Format("20060102")
 }
 
+func DayData(day int) string {
+	today := time.Now().Format("2006-01-02")
+	to, _ := time.ParseInLocation("2006-01-02", today, time.Local)
+	return to.AddDate(0, 0, day).Format("20060102")
+}
+
 // 今日0点时间戳
 func TodayTime() time.Time {
 	today := time.Now().Format("2006-01-02")
