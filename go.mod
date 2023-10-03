@@ -3,6 +3,7 @@ module github.com/Nuts2015/utils
 go 1.16
 
 require (
+	github.com/360EntSecGroup-Skylar/excelize v1.4.1
 	github.com/aliyun/aliyun-log-go-sdk v0.1.30
 	github.com/aliyun/aliyun-oss-go-sdk v2.2.2+incompatible
 	github.com/astaxie/beego v1.12.3
