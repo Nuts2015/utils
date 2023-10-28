@@ -14,10 +14,20 @@ func TodayDate() string {
 	return time.Now().Format("20060102")
 }
 
+// 今天的日期
+func TodayDateTime() string {
+	return time.Now().Format("20060102150405")
+}
+
 func DayData(day int) string {
 	today := time.Now().Format("2006-01-02")
 	to, _ := time.ParseInLocation("2006-01-02", today, time.Local)
 	return to.AddDate(0, 0, day).Format("20060102")
+}
+
+func DayDataAdd(sec int) string {
+	today := time.Now().Add(time.Duration(sec) * time.Second)
+	return today.Format("20060102150405")
 }
 
 // 今日0点时间戳
