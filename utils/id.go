@@ -10,7 +10,7 @@ import (
 
 var num2char = "0123456789abcdefghijklmnopqrstuvwxyz"
 
-//10进制转16或36进制
+// 10进制转16或36进制
 func NumToBHex(num, n int) string {
 	numStr := ""
 	for num != 0 {
@@ -21,9 +21,14 @@ func NumToBHex(num, n int) string {
 	return numStr
 }
 
-//唯一键生成函数
+// 唯一键生成函数
 func GetUniqId() (uniqId string) {
 	uniqId = NumToBHex(int(time.Now().UnixNano()), 36)
 	return uniqId
 }
 
+// 唯一键生成函数
+func GetUniqLenId(len int) (uniqId string) {
+	uniqId = NumToBHex(int(time.Now().UnixNano()), len)
+	return uniqId
+}
