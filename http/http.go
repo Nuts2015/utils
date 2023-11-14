@@ -3,7 +3,7 @@ package http
 import (
 	"errors"
 	"fmt"
-	"gopkg.in/resty.v1"
+	"github.com/go-resty/resty/v2"
 )
 
 // var client *resty.Client

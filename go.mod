@@ -9,6 +9,7 @@ require (
 	github.com/astaxie/beego v1.12.3
 	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
 	github.com/gin-gonic/gin v1.7.7
+	github.com/go-resty/resty/v2 v2.10.0
 	github.com/golang/protobuf v1.5.2
 	github.com/mohong122/ip2region v0.0.0-20190505055455-f4ef24f6b03d
 	github.com/satori/go.uuid v1.2.0 // indirect
@@ -17,6 +18,5 @@ require (
 	go.uber.org/zap v1.21.0
 	google.golang.org/grpc v1.49.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-	gopkg.in/resty.v1 v1.12.0
 	gopkg.in/yaml.v2 v2.4.0
 )
