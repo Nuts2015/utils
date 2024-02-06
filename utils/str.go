@@ -1,6 +1,9 @@
 package utils
 
-import "unicode"
+import (
+	"fmt"
+	"unicode"
+)
 
 func ContainsLetterAndDigit(str string) bool {
 	hasLetter := false
@@ -19,4 +22,11 @@ func ContainsLetterAndDigit(str string) bool {
 	}
 
 	return false
+}
+
+type StringTool struct {
+}
+
+func (receiver StringTool) MakeNumStr(number, len int64) string {
+	return fmt.Sprintf("%0*d", len, number)
 }
