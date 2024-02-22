@@ -21,7 +21,7 @@ func TodayDateTime() string {
 
 // 今天的日期
 func DayDateTime(day int) string {
-	return time.Now().AddDate(0, 0, day).Format("20060102150405")
+	return time.Now().AddDate(0, 0, day).Format("2006-01-02 15:04:05")
 }
 
 func DayData(day int) string {
