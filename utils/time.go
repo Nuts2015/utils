@@ -19,6 +19,11 @@ func TodayDateTime() string {
 	return time.Now().Format("20060102150405")
 }
 
+// 今天的日期
+func DayDateTime(day int) string {
+	return time.Now().AddDate(0, 0, day).Format("20060102150405")
+}
+
 func DayData(day int) string {
 	today := time.Now().Format("2006-01-02")
 	to, _ := time.ParseInLocation("2006-01-02", today, time.Local)
