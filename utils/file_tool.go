@@ -23,6 +23,21 @@ func CheckExists(path string) {
 	return
 }
 
+// IsDirEmpty 检查给定路径的文件夹是否为空
+func IsDirEmpty(dirName string) (bool, error) {
+	f, err := os.Open(dirName)
+	if err != nil {
+		return false, err
+	}
+	defer f.Close()
+
+	_, err = f.Readdirnames(1) // 尝试读取第一个文件名
+	if err == io.EOF {
+		return true, nil
+	}
+	return false, err
+}
+
 func ZipFolder(source, target string) error {
 	// 创建目标压缩文件
 	zipFile, err := os.Create(target)
