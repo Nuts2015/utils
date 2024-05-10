@@ -16,7 +16,7 @@ func CheckExists(path string) {
 			return
 		}
 		fmt.Println("mkdir path:", path)
-		err2 := os.Mkdir(path, 0777)
+		err2 := os.MkdirAll(path, 0777)
 		fmt.Println("mkdir err:", err2)
 		return
 	}
